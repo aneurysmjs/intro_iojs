@@ -1,0 +1,25 @@
+{
+  "name": "iojs",
+  "version": "0.0.1",
+  "description": "intro to io.js and making  with a realtime chat with video and gifs",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blackendstudios/iojs.git"
+  },
+  "keywords": [
+    "iojs",
+    "io.js",
+    "realtime"
+  ],
+  "author": "blackend",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/blackendstudios/iojs/issues"
+  },
+  "homepage": "https://github.com/blackendstudios/iojs#readme"
+}
