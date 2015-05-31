@@ -1,27 +1,27 @@
 'use strict';
-// define http
 const http = require('http');
 const fs = require('fs');
-// with io.js we can obtain the environment variables of the operative system
+const path = require('path');
 const port = process.env.PORT || 8080;
-// event emitter is node.js/io.js mechanism that lets you emit events and listen for those events
-// 'server' besides taking a callback, it's also an event emitter
 const server = http.createServer();
-//when is a 'request' is going to execute the function onRequest
+
 server.on('request', onRequest);
 server.on('listening', onListening);
 server.listen(port);
 
 function onRequest(req, res) {
-   // instead of responding a 'message', respond with a file
-   // synchronous method
-   let file = fs.readFileSync('public/index.html');// readFileSync takes a path to a file and responds with that file
-   /*
-    * is not recommended using it synchronously because it'll block the main execution threat of io.js
-    * while it loads the all file from the system, when it finish loading the file, it'll block all of
-    * the request that's coming to the server and then sends the file.
-    */
-   res.end(file);
+   let fileName = path.join(__dirname, 'public', 'index.html');
+   // join lets you concatenate routes and directories
+   // __dirname is the current location where the application is running
+   // instead of using it synchronously, we're going to make it asynchronously.
+   // here is the first pattern of callback by default for node which is used in all the API's and libraries.
+   // that pattern is: the 'error' as a first argument.
+   fs.readFile(fileName, function(err, file) { // the last argument of an asynchronous function is a callback that's going to take a file after loaded.
+      if(err) {
+         res.end(err.message);
+      }
+      res.end(file);
+   });
 }
 
 function onListening() {
