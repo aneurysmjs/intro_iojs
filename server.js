@@ -10,17 +10,17 @@ server.on('listening', onListening);
 server.listen(port);
 
 function onRequest(req, res) {
-   let fileName = path.join(__dirname, 'public', 'index.html');
-   // join lets you concatenate routes and directories
-   // __dirname is the current location where the application is running
-   // instead of using it synchronously, we're going to make it asynchronously.
-   // here is the first pattern of callback by default for node which is used in all the API's and libraries.
-   // that pattern is: the 'error' as a first argument.
-   fs.readFile(fileName, function(err, file) { // the last argument of an asynchronous function is a callback that's going to take a file after loaded.
-      if(err) {
-         res.end(err.message);
-      }
-      res.end(file);
+   let index = path.join(__dirname, 'public', 'index.html');
+   // streams are mechanism to read files or sources of binary information that reads in a smarter way.
+   // readFile loads the all file in memory, after the file is in memory, executes the callback and the file gets send in the response.
+   // so how it works when working with streams?
+   // while is reading the file it'll deliver as it goes having data available from the file and delivering it in the response.
+   res.setHeader('Content-Type', 'text/html');
+   let rs = fs.createReadStream(index);
+   // so is reading the file and sending it
+   rs.pipe(res);// here we're setting the
+   rs.on('error', function(err) {
+      rs.end(err.message);
    });
 }
 
