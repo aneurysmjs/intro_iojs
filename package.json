@@ -1,7 +1,7 @@
 {
   "name": "iojs",
   "version": "0.0.1",
-  "description": "intro to io.js and making  with a realtime chat with video and gifs",
+  "description": "intro to io.js and making with a realtime chat with video and gifs",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -21,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/blackendstudios/iojs/issues"
   },
-  "homepage": "https://github.com/blackendstudios/iojs#readme"
+  "homepage": "https://github.com/blackendstudios/iojs#readme",
+  "dependencies": {
+    "st": "^0.5.4"
+  }
 }
